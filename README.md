@@ -2,7 +2,7 @@
 
 <a href="#"><img src="./assets/react-native-banner.png" height="60" width="200"></a>
 
-<a href="#"><img src="./assets/react-native-banner.png" height="100" width="200"></a>
+<a href="#"><img src="./assets/shoutem-banner.png" height="100" width="200"></a>
 
 # Libraries
 <a href="https://expo.io/">Expo</a>
