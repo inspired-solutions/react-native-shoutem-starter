@@ -11,8 +11,6 @@
 
 <a href="https://shoutem.github.io/">Shoutem</a> for UI styling
 
-<a href="https://www.apollographql.com/">Apollo</a>
-
 # Tooling
   <a href="https://www.npmjs.com/">Npm</a> for dependency management
 
