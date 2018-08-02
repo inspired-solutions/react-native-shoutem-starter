@@ -1,15 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Examples } from '@shoutem/ui';
-import { AppLoading, Font } from 'expo';
+import { StatusBar, View, StyleSheet } from 'react-native';
+import { AppLoading, Asset, Font } from 'expo';
+
+import HomeScreen from './screens/HomeScreen';
 
 export default class App extends React.Component {
-  state = {
-    fontsAreLoaded: false,
-  }
+  state = { isReady: false };
 
-  async componentDidMount() {
-    await Font.loadAsync({
+  _loadAssetsAsync = async () => {
+    const imagesAsync = Asset.loadAsync([
+      require('./assets/images/robot-dev.png'),
+      require('./assets/images/robot-prod.png')
+    ]);
+
+    const fontsAsync = Font.loadAsync({
+      // Space Mono Font
+      'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf'),
+      // Rubik Font
       'Rubik-Black': require('./node_modules/@shoutem/ui/fonts/Rubik-Black.ttf'),
       'Rubik-BlackItalic': require('./node_modules/@shoutem/ui/fonts/Rubik-BlackItalic.ttf'),
       'Rubik-Bold': require('./node_modules/@shoutem/ui/fonts/Rubik-Bold.ttf'),
@@ -20,16 +27,28 @@ export default class App extends React.Component {
       'Rubik-Medium': require('./node_modules/@shoutem/ui/fonts/Rubik-Medium.ttf'),
       'Rubik-MediumItalic': require('./node_modules/@shoutem/ui/fonts/Rubik-MediumItalic.ttf'),
       'Rubik-Regular': require('./node_modules/@shoutem/ui/fonts/Rubik-Regular.ttf'),
-      'rubicon-icon-font': require('./node_modules/@shoutem/ui/fonts/rubicon-icon-font.ttf'),
-    })
+      // Rubicon Icon Font
+      'rubicon-icon-font': require('./node_modules/@shoutem/ui/fonts/rubicon-icon-font.ttf')
+    });
 
-    this.setState({ fontsAreLoaded: true })
-  }
+    return Promise.all([imagesAsync, fontsAsync]);
+  };
 
   render() {
+    if (!this.state.isReady) {
+      return (
+        <AppLoading
+          startAsync={this._loadAssetsAsync}
+          onFinish={() => this.setState({ isReady: true })}
+          onError={console.warn}
+        />
+      );
+  }
+
     return (
       <View style={styles.container}>
-         {this.state.fontsAreLoaded ? <Examples /> : <AppLoading />}
+        <StatusBar backgroundColor="blue" barStyle="light-content" />
+        <HomeScreen />
       </View>
     );
   }
