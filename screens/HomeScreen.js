@@ -6,7 +6,7 @@ import { MonoText } from './../components/StyledText';
 export default class HomeScreen extends React.Component {
   render() {
     return (
-      <View styleName="vertical v-center">
+      <View styleName="vertical h-center">
         <Image
           source={require('../assets/images/robot-dev.png')}
           style={{
