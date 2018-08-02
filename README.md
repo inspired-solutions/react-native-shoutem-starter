@@ -32,7 +32,7 @@ cd react-native-shoutem-starter
 # 3. Install npm packages
 yarn install
 
-# 4. Start server (runs on http://localhost:4000) and open GraphQL Playground
+# 4. Start server
 exp start
 ```
 
